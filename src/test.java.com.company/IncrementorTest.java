@@ -4,9 +4,14 @@ import incrementor.NegativeMaxValueException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-// TODO: Add comments
+/**
+ * Тесты класса {@link Incrementor}
+ */
 class IncrementorTest {
 
+    /**
+     * Проверка инициализационного значения инкрементируемого числа
+     */
     @Test
     void getNumberAfterInit() {
         Incrementor incrementor = new Incrementor();
@@ -15,6 +20,9 @@ class IncrementorTest {
         Assertions.assertEquals(0, actualValue);
     }
 
+    /**
+     * Проверка работы метода инкрементации несколько раз
+     */
     @Test
     void getNumberAfterMultiplyIncrement() {
         Incrementor incrementor = new Incrementor();
@@ -27,8 +35,12 @@ class IncrementorTest {
         }
     }
 
+    /**
+     * Проверка соответсвия дефолтного максимального значения максимальному значению целочисленного типа и проверка того,
+     * что после превышения максимального значения инкрементируемым, последнее обнулится
+     */
     @Test
-    void overflowDefaultLimit() {
+    void overflowDefaultMaxValue() {
         Incrementor incrementor = new Incrementor();
         int actualMaxValue;
         int actualValueAfterOverflow;
@@ -47,8 +59,12 @@ class IncrementorTest {
         Assertions.assertEquals(0, actualValueAfterOverflow);
     }
 
+    /**
+     * Проверка установки выбранного максимального значения и проверка того, что после превышения максимального
+     * значения инкрементируемым, последнее обнулится
+     */
     @Test
-    void overflowCustomLimit() {
+    void overflowCustomMaxValue() {
         Incrementor incrementor = new Incrementor();
         int maxValue = 10;
         int actualValue = incrementor.getNumber();
@@ -68,6 +84,9 @@ class IncrementorTest {
         Assertions.assertEquals(0, actualValueAfterOverflow);
     }
 
+    /**
+     * Попытка установить максимальным значением отрицательное число
+     */
     @Test
     void setNegativeMaxValue() {
         Incrementor incrementor = new Incrementor();
@@ -76,6 +95,10 @@ class IncrementorTest {
         Assertions.assertThrows(NegativeMaxValueException.class, () -> incrementor.setMaxValue(negativeMaxValue));
     }
 
+    /**
+     * Проверка обнуления инкрементируемого числа, после установленки максимальным значением числа, которое меньше
+     * инкрементируемого
+     */
     @Test
     void setMaxValueLessThenCurrentValue() {
         Incrementor incrementor = new Incrementor();
