@@ -2,7 +2,7 @@ package incrementor;
 
 // TODO: Add comments
 public class Incrementor {
-    private int maxValueOfCurrentNumber = Integer.MAX_VALUE;
+    private int maxValue = Integer.MAX_VALUE;
     private int currentNumber = 0;
 
     public int getNumber() {
@@ -10,19 +10,19 @@ public class Incrementor {
     }
 
     public void incrementNumber() {
-        if (currentNumber == maxValueOfCurrentNumber) {
+        if (currentNumber == maxValue) {
             onOverflowMaximumValue();
         } else {
             currentNumber = currentNumber + 1;
         }
     }
 
-    public void setMaximumValue(int maximumValue) {
-        if (maximumValue < 0) {
-            throw new NegativeMaximumValueException();
+    public void setMaxValue(int maxValue) {
+        if (maxValue < 0) {
+            throw new NegativeMaxValueException();
         } else {
-            maxValueOfCurrentNumber = maximumValue;
-            if (currentNumber > maxValueOfCurrentNumber) {
+            this.maxValue = maxValue;
+            if (currentNumber > maxValue) {
                 onOverflowMaximumValue();
             }
         }
