@@ -35,7 +35,7 @@ class IncrementorTest {
 
         int i = 0;
         while (i != Integer.MAX_VALUE) {
-            i = i + 1;
+            i++;
             incrementor.incrementNumber();
         }
 
