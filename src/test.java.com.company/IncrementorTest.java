@@ -67,16 +67,16 @@ class IncrementorTest {
     void overflowCustomMaxValue() {
         Incrementor incrementor = new Incrementor();
         int maxValue = 10;
-        int actualValue = incrementor.getNumber();
+        int actualValue;
         int actualValueAfterOverflow;
 
         incrementor.setMaxValue(maxValue);
 
         for (int i = 1; i <= maxValue; i++) {
             incrementor.incrementNumber();
-            actualValue = incrementor.getNumber();
         }
 
+        actualValue = incrementor.getNumber();
         incrementor.incrementNumber();
         actualValueAfterOverflow = incrementor.getNumber();
 
@@ -104,18 +104,39 @@ class IncrementorTest {
         Incrementor incrementor = new Incrementor();
         int maxValue = 10;
         int currentValue = 15;
-        int actualValue = incrementor.getNumber();
+        int actualValue;
         int actualValueAfterChangeMaxValue;
 
         for (int i = 1; i <= currentValue; i++) {
             incrementor.incrementNumber();
-            actualValue = incrementor.getNumber();
         }
 
+        actualValue = incrementor.getNumber();
         incrementor.setMaxValue(maxValue);
         actualValueAfterChangeMaxValue = incrementor.getNumber();
 
         Assertions.assertEquals(currentValue, actualValue);
         Assertions.assertEquals(0, actualValueAfterChangeMaxValue);
+    }
+
+    /**
+     * Проверка инкрементируемого числа, после установленки максимальным значением числа, которое равно
+     * инкрементируему
+     */
+    @Test
+    void setMaxValueEqualCurrentValue() {
+        Incrementor incrementor = new Incrementor();
+        int maxValue = 10;
+        int currentValue = 10;
+        int actualValue;
+
+        for (int i = 1; i <= currentValue; i++) {
+            incrementor.incrementNumber();
+        }
+
+        incrementor.setMaxValue(maxValue);
+        actualValue = incrementor.getNumber();
+
+        Assertions.assertEquals(currentValue, actualValue);
     }
 }
